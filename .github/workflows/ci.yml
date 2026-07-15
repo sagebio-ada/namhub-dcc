@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-build-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install package with dev dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Verify package builds (sdist + wheel)
+        run: python -m build
+
+      - name: CLI smoke test
+        run: |
+          namhub-dcc --version
+          namhub-dcc --help
+          namhub-dcc create-folders-from-recordset --help
+          namhub-dcc create-landscape-task --help

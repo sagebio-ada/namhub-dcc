@@ -1,48 +1,48 @@
 # namhub-dcc
 
+![CI](https://github.com/sagebio-ada/namhub-dcc/actions/workflows/ci.yml/badge.svg)
+![Deploy docs](https://github.com/sagebio-ada/namhub-dcc/actions/workflows/deploy-docs.yml/badge.svg)
+![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)
+
 Scripts to automate steps in NAMHub data coordination, packaged as an
 installable command-line tool (`namhub-dcc`) so anyone with a Synapse
 account can run them.
 
-**[Full documentation](https://sagebio-ada.github.io/namhub-dcc/)**
+**[Full documentation →](https://sagebio-ada.github.io/namhub-dcc/)**
 
-## Installation
+---
 
-Requires Python 3.10+ and a [Synapse](https://www.synapse.org) account.
+## Quickstart
 
 ```bash
 pip install git+https://github.com/sagebio-ada/namhub-dcc.git
-```
-
-This installs the `namhub-dcc` command.
-
-## Authentication
-
-Every command needs Synapse credentials, resolved in this order:
-
-1. An explicit `--auth-token` argument.
-2. The `SYNAPSE_AUTH_TOKEN` environment variable.
-3. Cached credentials in `~/.synapseConfig`.
-
-You can generate a personal access token from your Synapse account settings
-page ("Personal Access Tokens").
-
-```bash
 export SYNAPSE_AUTH_TOKEN=<your-personal-access-token>
+namhub-dcc --help
 ```
+
+Requires Python 3.10+ and a [Synapse](https://www.synapse.org) account. You
+can generate a personal access token from your Synapse account settings page
+("Personal Access Tokens").
+
+> Credentials are resolved in order: an explicit `--auth-token` argument, the
+> `SYNAPSE_AUTH_TOKEN` environment variable, then cached credentials in
+> `~/.synapseConfig`.
+
+---
 
 ## Commands
 
+| Command | Description |
+| --- | --- |
+| [`create-folders-from-recordset`](https://sagebio-ada.github.io/namhub-dcc/commands/create-folders-from-recordset.html) | Create one Synapse Folder per row of a Synapse RecordSet. |
+| [`create-landscape-task`](https://sagebio-ada.github.io/namhub-dcc/commands/create-landscape-task.html) | Create a NAMHub Landscape Task (RecordSet + CurationTask + Grid) in a project folder. |
+
 Run `namhub-dcc --help` to list all commands, or `namhub-dcc <command> --help`
-for a command's options. See the [full docs](https://sagebio-ada.github.io/namhub-dcc/)
-for detailed option tables, behavior notes, and the Python API.
+for a command's options. See the docs linked above for full option tables,
+behavior notes, and the Python API.
 
-### [`create-folders-from-recordset`](https://sagebio-ada.github.io/namhub-dcc/commands/create-folders-from-recordset.html)
-
-Creates a Synapse Folder for each row of a Synapse RecordSet, using a column
-value as the folder name, all under one parent container. RecordSets are
-backed by a CSV file, so the command downloads that file and reads it with
-pandas to get the rows.
+### `create-folders-from-recordset`
 
 ```bash
 namhub-dcc create-folders-from-recordset \
@@ -53,11 +53,7 @@ namhub-dcc create-folders-from-recordset \
 
 Add `--dry-run` to preview without creating anything.
 
-### [`create-landscape-task`](https://sagebio-ada.github.io/namhub-dcc/commands/create-landscape-task.html)
-
-Creates a NAMHub "Landscape Task" in a Synapse project folder: a RecordSet
-bound to the `NAMhub-Landscape` JSON schema, paired with a CurationTask and
-a Grid view, via `synapseclient.extensions.curator.create_record_based_metadata_task`.
+### `create-landscape-task`
 
 ```bash
 namhub-dcc create-landscape-task \
@@ -66,15 +62,15 @@ namhub-dcc create-landscape-task \
     --pi-name "Jane Doe"
 ```
 
-The RecordSet/CurationTask names, instructions, schema URI, and upsert key
-all have NAMHub defaults and can be overridden; see
-`namhub-dcc create-landscape-task --help`. The same logic is available as a
-plain Python function, `namhub_dcc.landscape.create_landscape_task`, for
-scripting (e.g. creating tasks across many folders in a loop).
+Also available as a plain Python function,
+`namhub_dcc.landscape.create_landscape_task`, for scripting (e.g. creating
+tasks across many folders in a loop).
+
+---
 
 ## Development
 
-Clone the repo and install it in editable mode with dev dependencies:
+Clone the repo and install it in editable mode:
 
 ```bash
 git clone https://github.com/sagebio-ada/namhub-dcc.git
@@ -83,4 +79,5 @@ pip install -e .
 ```
 
 New scripts should be added as a new module under `src/namhub_dcc/commands/`
-and registered in `src/namhub_dcc/commands/__init__.py`.
+and registered in `src/namhub_dcc/commands/__init__.py`. Add a matching page
+under `docs/commands/` and link it from `docs/index.md`.

@@ -19,6 +19,12 @@ dependencies = [
     "pandas",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "build",
+]
+
 [project.urls]
 Homepage = "https://github.com/sagebio-ada/namhub-dcc"
 Documentation = "https://sagebio-ada.github.io/namhub-dcc/"
@@ -28,3 +34,6 @@ namhub-dcc = "namhub_dcc.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.ruff]
+target-version = "py310"
