@@ -50,6 +50,25 @@ namhub-dcc create-folders-from-recordset \
 
 Add `--dry-run` to preview without creating anything.
 
+### `create-landscape-task`
+
+Creates a NAMHub "Landscape Task" in a Synapse project folder: a RecordSet
+bound to the `NAMhub-Landscape` JSON schema, paired with a CurationTask and
+a Grid view, via `synapseclient.extensions.curator.create_record_based_metadata_task`.
+
+```bash
+namhub-dcc create-landscape-task \
+    --project-id syn12345678 \
+    --folder-id syn74568176 \
+    --pi-name "Jane Doe"
+```
+
+The RecordSet/CurationTask names, instructions, schema URI, and upsert key
+all have NAMHub defaults and can be overridden; see
+`namhub-dcc create-landscape-task --help`. The same logic is available as a
+plain Python function, `namhub_dcc.landscape.create_landscape_task`, for
+scripting (e.g. creating tasks across many folders in a loop).
+
 ## Development
 
 Clone the repo and install it in editable mode with dev dependencies:
