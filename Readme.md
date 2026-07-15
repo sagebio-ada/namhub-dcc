@@ -14,6 +14,8 @@ pip install git+https://github.com/sagebio-ada/namhub-dcc.git
 
 This installs the `namhub-dcc` command.
 
+Full command reference: [docs/index.md](docs/index.md).
+
 ## Authentication
 
 Every command needs Synapse credentials, resolved in this order:
