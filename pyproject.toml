@@ -21,7 +21,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/sagebio-ada/namhub-dcc"
-Documentation = "https://github.com/sagebio-ada/namhub-dcc/blob/main/docs/index.md"
+Documentation = "https://sagebio-ada.github.io/namhub-dcc/"
 
 [project.scripts]
 namhub-dcc = "namhub_dcc.cli:main"

@@ -4,6 +4,8 @@ Scripts to automate steps in NAMHub data coordination, packaged as an
 installable command-line tool (`namhub-dcc`) so anyone with a Synapse
 account can run them.
 
+**[Full documentation](https://sagebio-ada.github.io/namhub-dcc/)**
+
 ## Installation
 
 Requires Python 3.10+ and a [Synapse](https://www.synapse.org) account.
@@ -13,8 +15,6 @@ pip install git+https://github.com/sagebio-ada/namhub-dcc.git
 ```
 
 This installs the `namhub-dcc` command.
-
-Full command reference: [docs/index.md](docs/index.md).
 
 ## Authentication
 
@@ -34,9 +34,10 @@ export SYNAPSE_AUTH_TOKEN=<your-personal-access-token>
 ## Commands
 
 Run `namhub-dcc --help` to list all commands, or `namhub-dcc <command> --help`
-for a command's options.
+for a command's options. See the [full docs](https://sagebio-ada.github.io/namhub-dcc/)
+for detailed option tables, behavior notes, and the Python API.
 
-### `create-folders-from-recordset`
+### [`create-folders-from-recordset`](https://sagebio-ada.github.io/namhub-dcc/commands/create-folders-from-recordset.html)
 
 Creates a Synapse Folder for each row of a Synapse RecordSet, using a column
 value as the folder name, all under one parent container. RecordSets are
@@ -52,7 +53,7 @@ namhub-dcc create-folders-from-recordset \
 
 Add `--dry-run` to preview without creating anything.
 
-### `create-landscape-task`
+### [`create-landscape-task`](https://sagebio-ada.github.io/namhub-dcc/commands/create-landscape-task.html)
 
 Creates a NAMHub "Landscape Task" in a Synapse project folder: a RecordSet
 bound to the `NAMhub-Landscape` JSON schema, paired with a CurationTask and
