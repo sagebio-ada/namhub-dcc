@@ -4,6 +4,16 @@ Each module here exposes an ``add_parser(subparsers)`` function that
 registers its subcommand (including a ``func`` default used to run it).
 """
 
-from namhub_dcc.commands import create_folders_from_recordset, create_landscape_task
+from namhub_dcc.commands import (
+    create_folders_from_recordset,
+    create_landscape_task,
+    sync_project_view,
+    update_materialized_view,
+)
 
-COMMAND_MODULES = [create_folders_from_recordset, create_landscape_task]
+COMMAND_MODULES = [
+    create_folders_from_recordset,
+    create_landscape_task,
+    sync_project_view,
+    update_materialized_view,
+]
