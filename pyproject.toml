@@ -24,6 +24,10 @@ dev = [
     "ruff",
     "build",
 ]
+gui = [
+    "streamlit",
+    "requests",
+]
 
 [project.urls]
 Homepage = "https://github.com/sagebio-ada/namhub-dcc"
