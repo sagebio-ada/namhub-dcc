@@ -25,8 +25,7 @@ dev = [
     "build",
 ]
 gui = [
-    "streamlit",
-    "requests",
+    "streamlit>=1.46",
 ]
 
 [project.urls]
